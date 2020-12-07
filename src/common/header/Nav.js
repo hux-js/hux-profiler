@@ -6,9 +6,9 @@ const ViewProfiler = styled.button`
   border-radius: 3px;
   color: #ed094a;
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.2em;
+  line-height: 1rem;
   padding: 10px;
   text-decoration: none !important;
   text-transform: uppercase;
@@ -16,9 +16,23 @@ const ViewProfiler = styled.button`
   background: none;
   cursor: pointer;
   margin-left: auto;
+  letter-spacing: 1.5px;
   :hover {
     background: #ed094a;
     color: #fff;
+  }
+`
+
+const Link = styled.a`
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  line-height: 30px;
+  font-size: 13px;
+  margin-right: 1rem;
+  :hover {
+    color: #ed094a;
   }
 `
 
@@ -31,6 +45,7 @@ const Nav = ({ updateProfilerActive, profilerActive }) => {
 
   return (
     <nav style={nav}>
+      <Link>Docs</Link>
       <ViewProfiler onClick={handleViewProfilerClick}>
         {profilerActive ? 'Hide profiler' : 'View profiler'}
       </ViewProfiler>

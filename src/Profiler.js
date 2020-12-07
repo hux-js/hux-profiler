@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
+import { SubNav } from './common/header/SubNav'
+import { Events } from './Events/Events'
+import { Store } from './Store/Store'
+import { Analytics } from './Analytics/Analytics'
+
 const ProfilerView = styled.div`
-  padding: 2rem;
+  width: 100%;
+  height: 100%;
 `
 
 const Profiler = () => {
-  const [trackedEvents, updateTrackedEvents] = useState([])
-
-  useEffect(() => {
-    if (window.__HUX_PROFILER_EVENTS__) {
-      updateTrackedEvents(window.__HUX_PROFILER_EVENTS__.reverse())
-    }
-  }, [window.__HUX_PROFILER_EVENTS__])
-
   return (
     <ProfilerView>
-      {trackedEvents.map(
-        (event) =>
-          `Type: ${event.type} | Execution time: ${event.executionTime} | Memory size: ${event.memorySize}`
-      )}
+      <SubNav
+        render={(selectedTab) => {
+          switch (selectedTab) {
+            case 'events':
+              return <Events />
+            case 'store':
+              return <Store />
+            case 'analytics':
+              return <Analytics />
+          }
+        }}
+      />
     </ProfilerView>
   )
 }

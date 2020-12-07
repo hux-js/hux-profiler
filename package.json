@@ -1,7 +1,7 @@
 {
-  "name": "hux-js-profiler",
-  "version": "1.0.0",
-  "description": "Profiler for Hux JS",
+  "name": "@hux-js/profiler",
+  "version": "1.0.76",
+  "description": "Profiler for Hux - store insights and debugging",
   "author": "Todd Runham",
   "license": "MIT",
   "repository": "https://github.com/hux-js/hux-profiler.git",
@@ -21,10 +21,12 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "prettier": "prettier --write src/"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
@@ -43,14 +45,19 @@
     "gh-pages": "^2.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.0"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
+    "chart.js": "^2.9.4",
+    "prismjs": "^1.22.0",
+    "react-feather": "^2.0.8",
+    "react-json-view": "^1.19.1",
+    "react-simple-code-editor": "^0.11.0",
     "styled-components": "^5.2.1"
   }
 }
