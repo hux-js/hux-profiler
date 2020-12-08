@@ -72,8 +72,6 @@ const Store = () => {
         fromProfiler: true
       })
 
-      console.log('response', response)
-
       updateQueryResult(response)
     } else {
       updateQueryResult({})
