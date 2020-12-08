@@ -23,29 +23,13 @@ const ViewProfiler = styled.button`
   }
 `
 
-const Link = styled.a`
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 500;
-  line-height: 30px;
-  font-size: 13px;
-  margin-right: 1rem;
-  :hover {
-    color: #ed094a;
-  }
-`
-
-const nav = {}
-
 const Nav = ({ updateProfilerActive, profilerActive }) => {
   const handleViewProfilerClick = () => {
     updateProfilerActive(!profilerActive)
   }
 
   return (
-    <nav style={nav}>
-      <Link>Docs</Link>
+    <nav>
       <ViewProfiler onClick={handleViewProfilerClick}>
         {profilerActive ? 'Hide profiler' : 'View profiler'}
       </ViewProfiler>
