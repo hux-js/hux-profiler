@@ -6,7 +6,7 @@
 
 #### Added
 
-- Events now display sub-events (#6)
+- Events now display sub-events (#5)
 
 ---
 
