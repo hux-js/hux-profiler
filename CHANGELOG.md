@@ -6,7 +6,7 @@
 
 #### Added
 
-- Events now display sub-events (#5)
+- Events list can now group sub-events (#5)
 
 ---
 

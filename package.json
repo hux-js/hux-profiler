@@ -1,6 +1,6 @@
 {
   "name": "@hux-js/profiler",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Profiler for Hux - store insights and debugging",
   "author": "Todd Runham",
   "license": "MIT",
@@ -26,7 +26,8 @@
   },
   "peerDependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "@hux-js/hux": "^0.3.0"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
