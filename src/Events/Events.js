@@ -139,7 +139,7 @@ const Events = () => {
             const parentEvent = event[eventKeys[0]]
             const subEventKeys = eventKeys.slice(1)
 
-            return (
+            return parentEvent && parentEvent.details ? (
               <EventView
                 selected={eventKeys[0] === selectedIndex}
                 key={`event-${index}`}
@@ -195,7 +195,7 @@ const Events = () => {
                   )
                 })}
               </EventView>
-            )
+            ) : null
           })}
       </Left>
 
