@@ -22,5 +22,9 @@
 
 - Fallback for when the hux event is not generated correctly
 
+---
+
+## Released
+
 ### 0.1.0
 ...
