@@ -68,20 +68,23 @@ const generateDataFromSchema = ({ schema }) => {
 }
 
 const Hydrate = ({ selectedBucket, updateQueryResult }) => {
+  const { sync, buckets } = window.__HUX_PROFILER_INTEROP_HOOK__({})
+
   const [selectedMode, updateSelectedMode] = useState('merge')
-  const { schema } = window.__HUX_PROFILER_BUCKETS__[selectedBucket] || {}
+  const { schema } = buckets[selectedBucket] || {}
 
   const data = generateDataFromSchema({ schema })
   const [editorCode, updateEditorCode] = useState(data)
 
   const handleHydrateStore = () => {
     const execute = async () => {
-      const response = await window.__HUX_PROFILER_SYNC_FN__({
+      const response = await sync({
         name: selectedBucket,
         data: editorCode,
         mode: selectedMode,
         fromProfiler: true,
       })
+
       updateQueryResult(response)
     }
 

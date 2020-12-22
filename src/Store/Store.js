@@ -50,23 +50,25 @@ const Right = styled.div`
 `
 
 const Store = () => {
+  const { buckets: huxBuckets, query } = window.__HUX_PROFILER_INTEROP_HOOK__({})
+
   const [menuSelection, updateMenuSelection] = useState('query')
   const [queryResult, updateQueryResult] = useState({})
   const [buckets, updateBuckets] = useState([])
   const [selectedBucket, updateSelectedBucket] = useState('default')
 
   useEffect(() => {
-    if (window.__HUX_PROFILER_BUCKETS__) {
-      updateBuckets(Object.keys(window.__HUX_PROFILER_BUCKETS__))
+    if (huxBuckets) {
+      updateBuckets(Object.keys(huxBuckets))
     }
-  }, [window.__HUX_PROFILER_BUCKETS__])
+  }, [huxBuckets])
 
   const handleBucketSelection = async (event) => {
     updateSelectedBucket(event.target.value)
     updateMenuSelection('query')
 
     if (event.target.value !== 'default') {
-      const response = await window.__HUX_PROFILER_QUERY_FN__({
+      const response = await query({
         name: event.target.value,
         query: [],
         fromProfiler: true
