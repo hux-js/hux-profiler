@@ -14,8 +14,10 @@ const MemoryChart = styled.canvas`
 `
 
 const Analytics = () => {
+  const { getBucketsMemorySize } = window.__HUX_PROFILER_INTEROP_HOOK__({})
+
   const updateChart = async ({ chart }) => {
-    const bucketsMemoryUsage = await window.__HUX_PROFILER_BUCKETS_MEMORY_SIZE_FN__()
+    const bucketsMemoryUsage = await getBucketsMemorySize()
 
     chart.data.datasets.forEach((dataset) => {
       dataset.data = bucketsMemoryUsage

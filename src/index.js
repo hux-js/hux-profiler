@@ -23,7 +23,7 @@ const ProfilerContainer = styled.div`
 `
 
 export const HuxProfiler = () => {
-  window.__HUX_PROFILER_ENABLED__ = { state: true }
+  window.__HUX_PROFILER_ENABLED__ = true
 
   const [profilerActive, updateProfilerActive] = useState(false)
   const [triggerPositionDelay, updateTriggerPositionDelay] = useState(false)
