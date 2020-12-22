@@ -36,11 +36,13 @@ const code = `[
 `
 
 const Query = ({ selectedBucket, updateQueryResult }) => {
+  const { query } = window.__HUX_PROFILER_INTEROP_HOOK__({})
+
   const [editorCode, updateEditorCode] = useState(code)
 
   const handleExecuteQuery = () => {
     const execute = async () => {
-      const response = await window.__HUX_PROFILER_QUERY_FN__({
+      const response = await query({
         name: selectedBucket,
         query: JSON.parse(editorCode),
         fromProfiler: true,

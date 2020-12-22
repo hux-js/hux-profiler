@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Search } from 'react-feather'
 
@@ -85,28 +85,26 @@ const EventHeader = styled.div`
   border-bottom: 2px solid #eee;
 `
 
-if (!window.__HUX_PROFILER_EVENTS__) {
-  window.__HUX_PROFILER_EVENTS__ = {
-    events: []
-  }
-}
-
 const Events = () => {
   const [selectedEvent, updateSelectedEvent] = useState()
-  const [trackedEvents, updateTrackedEvents] = useState(
-    window.__HUX_PROFILER_EVENTS__.events
-  )
+  const [trackedEvents, updateTrackedEvents] = useState({})
+
+  const updateEvents = ({ events }) => {
+    updateTrackedEvents({ ...events })
+  }
+
+  const { events } = window.__HUX_PROFILER_INTEROP_HOOK__({
+    profilerHandlers: { updateEvents }
+  })
+
+  useEffect(() => {
+    if (!Object.keys(trackedEvents).length) {
+      updateTrackedEvents(events)
+    }
+  }, [])
+
   const [selectedIndex, updateSelectedIndex] = useState()
   const [selectedSubIndex, updateSelectedSubIndex] = useState()
-
-  setInterval(() => {
-    if (
-      Object.keys(window.__HUX_PROFILER_EVENTS__.events).length !==
-      Object.keys(trackedEvents).length
-    ) {
-      updateTrackedEvents(window.__HUX_PROFILER_EVENTS__.events)
-    }
-  }, 2000)
 
   const handleSelectEvent = ({ index, event }) => {
     updateSelectedEvent(event)
