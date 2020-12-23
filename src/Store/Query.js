@@ -31,12 +31,26 @@ const Execute = styled.button`
 `
 
 const code = `[
-  "exampleKey"
+  "exampleKey",
+  Filter("exampleKey2", ["exampleKey3=query string"])
 ]
 `
 
+const generateQuery = ({ query, Filter }) => {
+  let formattedQuery = query;
+  const filters = formattedQuery.match(/Filter\(\s*([^)]+?)\s*\)/g);
+
+  filters.forEach(filter => {
+    // eslint-disable-next-line no-new-func
+    const filterObject = Function("Filter", `return ${filter}`)(Filter);
+    formattedQuery = formattedQuery.replace(filter, JSON.stringify(filterObject))
+  })
+
+  return JSON.parse(formattedQuery)
+}
+
 const Query = ({ selectedBucket, updateQueryResult }) => {
-  const { query } = window.__HUX_PROFILER_INTEROP_HOOK__({})
+  const { query, Filter } = window.__HUX_PROFILER_INTEROP_HOOK__({})
 
   const [editorCode, updateEditorCode] = useState(code)
 
@@ -44,7 +58,7 @@ const Query = ({ selectedBucket, updateQueryResult }) => {
     const execute = async () => {
       const response = await query({
         name: selectedBucket,
-        query: JSON.parse(editorCode),
+        query: generateQuery({ query: editorCode, Filter }),
         fromProfiler: true,
       })
       updateQueryResult(response)
